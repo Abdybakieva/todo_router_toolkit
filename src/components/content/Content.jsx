@@ -1,15 +1,25 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector} from "react-redux";
+import { useDispatch} from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { todosActions } from "../../store/store";
+import { autnActions } from "../../store/authReducer/authReducer";
+import { todosActions } from "../../store/todoReducer/store";
+
 import Button from "../IU/button";
 import TodoForm from "../todoForm/TodoForm";
 
 function Content() {
   const [inputText, setInputText] = useState("");
+  const navigate=useNavigate()
 
 
   const dispatch = useDispatch();
+
+   const LogoutBtn = (event) => {
+     event.preventDefault();
+     dispatch(autnActions.logout());
+     navigate("/login");
+   };
 
   const changeInput = (event) => {
     setInputText(event.target.value);
@@ -29,6 +39,7 @@ function Content() {
   };
   return (
     <>
+    <Button onClick={LogoutBtn}>Logout</Button>
       <Container>
         <Input type="text" onChange={changeInput} value={inputText} />
         <Button onClick={buttonHandler}>ADD</Button>

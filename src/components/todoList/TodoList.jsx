@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { todosActions } from '../../store/store';
+import { todosActions } from '../../store/todoReducer/store';
+
 import Button from '../IU/button';
 
 function TodoList({title,el}) {
